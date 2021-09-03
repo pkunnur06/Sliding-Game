@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+    <style>
+        .box{
+            width:200px;
+            height:200px;
+            
+            box-sizing:border-box;
+            border:1px solid black;
+        }
+        .cat{
+            height: 200px;
+            background-attachment: fixed;
+            background-size:cover;
+        }
+        .container{
+            position:relative;
+            width:100%;
+        }
+        .box:nth-child(1){
+            position: absolute;
+            left:0px;
+            top:0px;
+        }
+        .box:nth-child(2){
+            position:absolute;
+                left:200px;
+                top:0px;
+        }
+        .box:nth-child(3){
+            position:absolute;
+                left:0px;
+                top:200px;            
+        }
+        .box:nth-child(4){
+            position: absolute;
+            left:200px;
+            top:200px;
+            
+        }
+    </style>
+</head>
+<body>
+    <header>
+            <div class="row container">
+                <div class="box" id="box1">
+                    <img src="20658.jpg" class="cat" style="width:100%;">
+                </div>                                  
+                <div class="box" id="box2"></div>                                  
+                <div class="box" id="box3"></div>                                  
+                <div class="box" id="box4"></div>                                  
+             </div>
+        <script>
+        let box1=document.getElementById("box1");
+        let box2=document.getElementById("box2");
+        let box3=document.getElementById("box3");
+        let box4=document.getElementById("box4");
+                console.log(box1);
+                console.log(box2);
+                console.log(box3);
+                console.log(box4);
+                box1.style.left="0px";
+                box1.style.top="0px";
+                box2.style.left="200px";
+                box2.style.top="0px";
+                box3.style.left="0px";
+                box3.style.top="200px";
+                box4.style.left="200px";
+                box4.style.top="200px";
+        function getBox(key){
+            let left=parseInt(box1.style.left)
+            let top=parseInt(box1.style.top)
+                if(key=="ArrowRight"){
+                        left+=200;
+                }
+               
+                if(key=="ArrowDown"){
+                    top+=200;
+                }   
+                if(key=="ArrowLeft"){
+                    left-=200;
+                }   
+                if(key=="ArrowUp"){
+                    top-=200;
+                }
+                    
+                    
+                if(box2.style.left==(left+"px")&& box2.style.top==(top+"px")){
+                    return box2;
+                }
+                                    
+               
+                if(box3.style.left==(left+"px")&& box3.style.top==(top+"px")){
+                    return box3;
+                }
+                                   
+                if(box4.style.left==(left+"px")&& box4.style.top==(top+"px")){
+                    return box4 ;
+                }
+                                        
+        
+        }
+        
+        window.addEventListener("keydown",function(e){
+         let  box=getBox(e.key);
+        let temp={};
+      
+        temp["left"]=box.style.left;
+        temp["top"]=box.style.top;
+        box.style.left=box1.style.left;
+        box.style.top=box1.style.top;
+        box1.style.left=temp.left;
+        box1.style.top=temp.top;
+        });
+        </script>
+    </header>
+</body>
+</html>
